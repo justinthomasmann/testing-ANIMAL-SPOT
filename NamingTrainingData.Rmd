@@ -12,7 +12,7 @@ library(warbleR)
 library(RavenR)
 ```
 
-```{r function to get length of wav files}
+```{r function to get ms length of wav files}
 wav.length <- function(x)
 {audio<-readWave(x, header=TRUE)
   round(audio$samples / audio$sample.rate, 2)*1000
@@ -24,12 +24,12 @@ file.list <- list.files("trainingData/", pattern = "\\.wav$", full.names = TRUE)
 file.list
 ```
 
-```{r get lenght of wavs in milliseconds}
+```{r get length of wavs in milliseconds}
 milliseconds <- sapply(file.list, wav.length)
 ```
 
 
-```{r}
+```{r add ms to names}
 AddMilliSecStart <- sub(".wav", "_0_", file.list, fixed = TRUE)
 AddMilliSecStart
 
@@ -37,10 +37,10 @@ AddMilliSecEnd <- paste0(AddMilliSecStart,milliseconds,sep = "")
 
 AddWav <- paste0(AddMilliSecEnd,".wav",sep="")
 AddWav
-
-file.rename(file.list, AddWav)
-
 ```
 
+```{r rename files}
+file.rename(file.list, AddWav)
+```
 
 
