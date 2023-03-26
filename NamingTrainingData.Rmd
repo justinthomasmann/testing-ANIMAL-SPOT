@@ -12,3 +12,14 @@ library(warbleR)
 library(RavenR)
 ```
 
+```{r}
+file.list <- list.files("trainingData/", pattern = "\\.wav$", full.names = TRUE)
+
+wav.length <- function(x)
+{audio<-readWave(x, header=TRUE)
+  round(audio$samples / audio$sample.rate, 2)*1000
+  }
+
+milliseconds <- as.matrix(sapply(file.list, wav.length))
+```
+
