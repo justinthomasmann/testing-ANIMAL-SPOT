@@ -26,6 +26,7 @@ file.list
 
 ```{r get length of wavs in milliseconds}
 milliseconds <- sapply(file.list, wav.length)
+mean(milliseconds)
 ```
 
 
